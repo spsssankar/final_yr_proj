@@ -3,7 +3,7 @@
 # check if the received data matches two predefined 'commands'
  
 import paho.mqtt.client as mqtt
-from line_follow_pwm_car2 import still,forward,right,left
+from line_follow_pwm_car3 import still,forward,right,left
  
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -20,17 +20,25 @@ def on_message(client, userdata, msg):
 
     if msg.payload == "stop":
         print("stop")
+        still()
+        publish.single("Platoon/car3", "still", hostname="test.mosquitto.org")
         # Do something
 
     if msg.payload == "right":
         print("right")
+        right(255)
+        publish.single("Platoon/car3", "still", hostname="test.mosquitto.org")
         # Do something else
     if msg.payload == "left":
         print("left")
+        left(255)
+        publish.single("Platoon/car3", "still", hostname="test.mosquitto.org")
         # Do something else
         
     if msg.payload == "forward":
         print("forward")
+        forward(255)
+        publish.single("Platoon/car3", "still", hostname="test.mosquitto.org")
         # Do something else
  
 # Create an MQTT client and attach our routines to it.

@@ -1,3 +1,7 @@
+IO.setup(27,IO.IN) #GPIO 27 -> Middle IR out
+IO.setup(27,IO.IN) #GPIO 27 -> Middle IR out
+import paho.mqtt.publish as publish
+
 import RPi.GPIO as IO
 import time
 IO.setwarnings(False)
@@ -52,26 +56,31 @@ def still():
     IO.output(18,False) #2B-
 
 
-while 1:
+    """while 1:
 
- 
+     
 
-    if (IO.input(27)==False):
-    
-        still()
+        if (IO.input(27)==False):
         
-    elif(IO.input(2)==False and IO.input(3)==False): #both while move forward     
-        
-        forward(255)
+            still()
+            publish.single("Platoon/car2", "still", hostname="test.mosquitto.org")
+            
+        elif(IO.input(2)==False and IO.input(3)==False): #both while move forward     
+            
+            forward(255)
+            publish.single("Platoon/car2", "forward", hostname="test.mosquitto.org")
 
-    elif(IO.input(2)==True and IO.input(3)==False): #turn right
-        
-        right(255)
+        elif(IO.input(2)==True and IO.input(3)==False): #turn right
+            
+            right(255)
+            publish.single("Platoon/car2", "right", hostname="test.mosquitto.org")
 
-    elif(IO.input(2)==False and IO.input(3)==True): #turn left
-        
-        left(255)
+        elif(IO.input(2)==False and IO.input(3)==True): #turn left
+            
+            left(255)
+            publish.single("Platoon/car2", "left", hostname="test.mosquitto.org")
 
-    else:  #stay still
-        
-        still()
+        else:  #stay still
+            
+            still()
+"""

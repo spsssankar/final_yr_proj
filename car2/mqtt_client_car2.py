@@ -20,17 +20,25 @@ def on_message(client, userdata, msg):
 
     if msg.payload == "stop":
         print("stop")
+        still()
+        publish.single("Platoon/car2", "still", hostname="test.mosquitto.org")
         # Do something
 
     if msg.payload == "right":
         print("right")
+        right(255)
+        publish.single("Platoon/car2", "still", hostname="test.mosquitto.org")
         # Do something else
     if msg.payload == "left":
         print("left")
+        left(255)
+        publish.single("Platoon/car2", "still", hostname="test.mosquitto.org")
         # Do something else
         
     if msg.payload == "forward":
         print("forward")
+        forward(255)
+        publish.single("Platoon/car2", "still", hostname="test.mosquitto.org")
         # Do something else
  
 # Create an MQTT client and attach our routines to it.
