@@ -5,6 +5,7 @@ IO.setmode(IO.BCM)
 
 IO.setup(2,IO.IN) #GPIO 2 -> Right IR out
 IO.setup(3,IO.IN) #GPIO 3 -> Left IR out
+IO.setup(27,IO.IN) #GPIO 27 -> Middle IR out
 
 IO.setup(4,IO.OUT) #GPIO 4 -> Motor 1 terminal A
 IO.setup(14,IO.OUT) #GPIO 14 -> Motor 1 terminal B
@@ -55,18 +56,23 @@ while 1:
 
  
 
-    if(IO.input(2)==False and IO.input(3)==False): #both while move forward     
+    if (IO.input(27)==False):
+    
+        still()
         
-        forward()
+    elif(IO.input(2)==False and IO.input(3)==False): #both while move forward     
+        
+        forward(255)
 
     elif(IO.input(2)==True and IO.input(3)==False): #turn right
         
-        right()
+        right(255)
 
     elif(IO.input(2)==False and IO.input(3)==True): #turn left
         
-        left()      
+        left(255)
 
     else:  #stay still
         
         still()
+
