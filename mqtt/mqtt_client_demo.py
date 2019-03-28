@@ -10,20 +10,26 @@ def on_connect(client, userdata, flags, rc):
  
     # Subscribing in on_connect() - if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("CoreElectronics/test")
-    client.subscribe("CoreElectronics/topic")
+    client.subscribe("Platoon/test")
+    #client.subscribe("Platoon/topic")
  
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
-    if msg.payload == "Hello":
-        print("Received message #1, do something")
+    if msg.payload == "stop":
+        print("stop")
         # Do something
 
-
-    if msg.payload == "World!":
-        print("Received message #2, do something else")
+    if msg.payload == "right":
+        print("right")
+        # Do something else
+    if msg.payload == "left":
+        print("left")
+        # Do something else
+        
+    if msg.payload == "forward":
+        print("forward")
         # Do something else
  
 # Create an MQTT client and attach our routines to it.
@@ -38,3 +44,4 @@ client.connect("test.mosquitto.org", 1883, 60)
 # https://github.com/eclipse/paho.mqtt.python
 # for information on how to use other loop*() functions
 client.loop_forever()
+
