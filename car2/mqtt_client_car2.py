@@ -2,6 +2,8 @@
 # Continuously monitor two different MQTT topics for data,
 # check if the received data matches two predefined 'commands'
  
+import paho.mqtt.publish as publish
+
 import paho.mqtt.client as mqtt
 from line_follow_pwm_car2 import still,forward,right,left
  
